@@ -6,12 +6,14 @@
 [ext_resource type="AudioStream" uid="uid://bar2nn3cpro78" path="res://assets/music/Main Menu.wav" id="4_araup"]
 
 [node name="MainMenu" type="Control"]
+layout_direction = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(960, 540)
 size_flags_horizontal = 6
 size_flags_vertical = 6
 script = ExtResource("1_5ssjm")

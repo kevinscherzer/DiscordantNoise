@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bnfxc4blxjftx"]
+[gd_scene load_steps=4 format=3 uid="uid://bnfxc4blxjftx"]
 
 [ext_resource type="Script" uid="uid://sx355l81iifs" path="res://scripts/ui/settings_tab_container.gd" id="1_f2smf"]
 [ext_resource type="Script" uid="uid://kbcjqi3bns5o" path="res://scripts/user_settings/sound_settings.gd" id="2_i8gnx"]
+[ext_resource type="Script" uid="uid://hpqbgrd5sn51" path="res://scripts/user_settings/video_settings.gd" id="3_ns1sg"]
 
 [node name="SettingsTabContainer" type="Control"]
 layout_mode = 3
@@ -24,9 +25,10 @@ offset_bottom = -100.0
 grow_horizontal = 2
 grow_vertical = 2
 tab_alignment = 1
-current_tab = 0
+current_tab = 1
 
 [node name="Sound" type="TabBar" parent="TabContainer"]
+visible = false
 layout_mode = 2
 script = ExtResource("2_i8gnx")
 metadata/_tab_index = 0
@@ -143,12 +145,12 @@ layout_mode = 2
 size_flags_horizontal = 6
 text = "100%"
 
-[node name="Controls" type="TabBar" parent="TabContainer"]
-visible = false
+[node name="Video" type="TabBar" parent="TabContainer"]
 layout_mode = 2
+script = ExtResource("3_ns1sg")
 metadata/_tab_index = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Controls"]
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Video"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -160,37 +162,111 @@ theme_override_constants/margin_top = 24
 theme_override_constants/margin_right = 24
 theme_override_constants/margin_bottom = 24
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Controls/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Video/MarginContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
 theme_override_constants/separation = 64
 alignment = 1
 
-[node name="Label" type="Label" parent="TabContainer/Controls/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Video/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Move up"
 
-[node name="Label2" type="Label" parent="TabContainer/Controls/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="TabContainer/Video/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
-text = "Move down"
+text = "Window Mode"
 
-[node name="Label3" type="Label" parent="TabContainer/Controls/MarginContainer/VBoxContainer"]
+[node name="WindowModeOptionsButton" type="OptionButton" parent="TabContainer/Video/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(210, 0)
 layout_mode = 2
-text = "Move left"
+alignment = 1
+icon_alignment = 1
+selected = 0
+item_count = 3
+popup/item_0/text = "Fullscreen"
+popup/item_0/id = 0
+popup/item_1/text = "Borderless Windowed"
+popup/item_1/id = 1
+popup/item_2/text = "Windowed"
+popup/item_2/id = 2
 
-[node name="Label4" type="Label" parent="TabContainer/Controls/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="TabContainer/Video/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Move right"
 
-[node name="Label5" type="Label" parent="TabContainer/Controls/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="TabContainer/Video/MarginContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
-text = "Dash"
+text = "Resolution"
 
-[node name="Accessibility" type="TabBar" parent="TabContainer"]
+[node name="ResolutionOptionButton" type="OptionButton" parent="TabContainer/Video/MarginContainer/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(210, 0)
+layout_mode = 2
+alignment = 1
+selected = 0
+item_count = 3
+popup/item_0/text = "1920 x 1080"
+popup/item_0/id = 0
+popup/item_1/text = "1600 x 900"
+popup/item_1/id = 1
+popup/item_2/text = "1280 x 720"
+popup/item_2/id = 2
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="TabContainer/Video/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TabContainer/Video/MarginContainer/VBoxContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "VSync"
+
+[node name="VSyncOptionButton" type="OptionButton" parent="TabContainer/Video/MarginContainer/VBoxContainer/HBoxContainer3"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(210, 0)
+layout_mode = 2
+alignment = 1
+selected = 0
+item_count = 2
+popup/item_0/text = "Enabled"
+popup/item_0/id = 0
+popup/item_1/text = "Disabled"
+popup/item_1/id = 1
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="TabContainer/Video/MarginContainer/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "Must have VSync disabled"
+
+[node name="Label" type="Label" parent="TabContainer/Video/MarginContainer/VBoxContainer/HBoxContainer4"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Frame rate limit"
+
+[node name="FrameRateOptionButton" type="OptionButton" parent="TabContainer/Video/MarginContainer/VBoxContainer/HBoxContainer4"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(210, 0)
+layout_mode = 2
+disabled = true
+alignment = 1
+selected = 1
+item_count = 5
+popup/item_0/text = "30"
+popup/item_0/id = 0
+popup/item_1/text = "60"
+popup/item_1/id = 1
+popup/item_2/text = "120"
+popup/item_2/id = 2
+popup/item_3/text = "144"
+popup/item_3/id = 3
+popup/item_4/text = "Unlimited"
+popup/item_4/id = 4
+
+[node name="Control" type="TabBar" parent="TabContainer"]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Accessibility"]
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Control"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -202,11 +278,20 @@ theme_override_constants/margin_top = 24
 theme_override_constants/margin_right = 24
 theme_override_constants/margin_bottom = 24
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Accessibility/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Control/MarginContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
 theme_override_constants/separation = 64
 alignment = 1
 
-[node name="Label" type="Label" parent="TabContainer/Accessibility/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Control/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "12345"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="TabContainer/Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="TabContainer/Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="TabContainer/Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
