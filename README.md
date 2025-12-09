@@ -1,5 +1,9 @@
-# Discordant Noise
-In this game, you play as Noise. A Sound Demon who is imprisoned at the bottom of a notorious prison run by the Maestro, where every action needs to be in time with the “Metronome”. To escape, Noise needs to defeat the Wardens of each Area, and finally confront the Maestro themselves.
+# MinimalProjectTemplate
+The official 100 Devs - 1 Game Minimal Project Template
+
+Put your project under `src/`
+
+Put all our artists assets ( Textures, Music, SFX ) under `src/assets/`
 
 
-Join the 100 Devs - 1 Game [Discord](https://discord.gg/UHN4AjMw4d)
+Join us on [Discord](https://discord.gg/UHN4AjMw4d)

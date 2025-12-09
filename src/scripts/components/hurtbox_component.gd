@@ -1,7 +1,7 @@
 extends Area2D
 class_name HurtboxComponent
 
-@export var healt_component: HealthComponent
+@export var health_component: HealthComponent
 
 
 
@@ -11,4 +11,4 @@ func _ready() -> void:
 
 func on_area_entered(other_area: HitboxComponent):
 	if other_area is HitboxComponent:
-		healt_component.damage(2)
+		health_component.damage(2)

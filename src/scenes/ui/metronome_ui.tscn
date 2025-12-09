@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://cifp187fx03ug"]
+[gd_scene load_steps=2 format=3 uid="uid://cifp187fx03ug"]
+
+[ext_resource type="Script" uid="uid://dya3nxbx0akj8" path="res://scenes/ui/metronome_ui.gd" id="1_xqsq4"]
 
 [node name="MetronomeUI" type="Control"]
 layout_mode = 3
@@ -7,3 +9,4 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_xqsq4")

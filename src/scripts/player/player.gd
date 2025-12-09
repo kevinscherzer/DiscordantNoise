@@ -20,8 +20,7 @@ var facing = CHAR_FACING.RIGHT
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	state_machine.Initialize(self)
-	pass # Replace with function body.
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
@@ -29,20 +28,18 @@ func _physics_process(delta: float) -> void:
 	pass
 
 func _movement(delta: float) -> void:
-	direction = Input.get_vector("move_left", "move_right", "move_up", "move_down").normalized()
+	direction.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
+	direction.y = Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
+	direction = direction.normalized()
 	_turn_char(direction)
-	
-	
+
 
 func _turn_char(dir: Vector2) -> void:
 	if (!dir.is_zero_approx()): 
 		rotation = dir.angle()
 	
 
-func _on_body_entered(body: Node2D) -> void:
-	#if something that deals damage
-	hide() # Player disappears after being hit.
-	hit.emit()
-	# Must be deferred as we can't change physics properties on a physics callback.
-	$CollisionShape2D.set_deferred("disabled", true)
-	pass # Replace with function body.
+func on_start(pos: Vector2):
+	position = pos
+	show()
+	state_machine.Initialize(self)

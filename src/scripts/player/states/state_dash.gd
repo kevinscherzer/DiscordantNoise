@@ -3,8 +3,8 @@ class_name State_Dash extends State
 @onready var walk : State = $"../Walk"
 @onready var idle : State = $"../Idle"
 
-var note : QuarterNote
-var our_note : PlayerNote
+@onready var note : QuarterNote = $"PlayerNote/QuarterNote"
+@onready var our_note : PlayerNote = $"PlayerNote"
 
 var internal_dash_timer : float = 0.0
 
@@ -20,10 +20,6 @@ var dash_duration : float = 0.2
 var on_cooldown : bool = false
 
 func _ready() -> void:
-	note = QuarterNote.new()
-	our_note = PlayerNote.new()
-	our_note.playable_on = note
-	our_note.note = note
 	pass
 
 # When player enters state
@@ -35,7 +31,7 @@ func Enter() -> void:
 	initial_position = player.position
 	player.velocity = dash_direction * initial_speed
 	
-	print("Dash")
+	#print("Dash")
 	
 	#keep track of how long ability goes on cooldown for
 	on_cooldown = true

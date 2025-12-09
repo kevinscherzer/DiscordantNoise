@@ -1,0 +1,102 @@
+[gd_scene load_steps=4 format=3 uid="uid://dkwe7r4ldng1e"]
+
+[ext_resource type="FontFile" uid="uid://crd41l6rvnekw" path="res://external/fonts/temp/Asimovian/Asimovian-Regular.ttf" id="1_q0dby"]
+[ext_resource type="Script" uid="uid://dhbtxpcg3kxs8" path="res://scripts/ui/pause_menu.gd" id="1_sda51"]
+[ext_resource type="PackedScene" uid="uid://8omltyga2x0n" path="res://scenes/ui/menu/options_menu.tscn" id="3_4ko1u"]
+
+[node name="PauseMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sda51")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.10748, 0.10748, 0.10748, 0.956863)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -101.0
+offset_top = -193.5
+offset_right = 101.0
+offset_bottom = 193.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 60
+
+[node name="Seperator" type="Control" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="GameLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_q0dby")
+theme_override_font_sizes/font_size = 60
+text = "PAUSE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 12
+
+[node name="ResumeButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_q0dby")
+theme_override_font_sizes/font_size = 30
+text = "Resume"
+
+[node name="OptionsButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_q0dby")
+theme_override_font_sizes/font_size = 30
+text = "Options"
+
+[node name="ExitButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_q0dby")
+theme_override_font_sizes/font_size = 30
+text = "Exit Game"
+
+[node name="OptionsMenu" parent="." instance=ExtResource("3_4ko1u")]
+visible = false
+layout_mode = 1

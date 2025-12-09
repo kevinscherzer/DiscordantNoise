@@ -1,0 +1,177 @@
+[gd_scene load_steps=22 format=3 uid="uid://c6al2btloohgx"]
+
+[ext_resource type="Script" uid="uid://dgvhs8c8jo1at" path="res://scripts/player/player.gd" id="1_y4r1p"]
+[ext_resource type="Script" uid="uid://bd5bvp40wvxeh" path="res://scripts/player/player_state_machine.gd" id="2_d2wvv"]
+[ext_resource type="Script" uid="uid://1yhfapoar26s" path="res://scripts/player/states/state_idle.gd" id="3_3v2ag"]
+[ext_resource type="Script" uid="uid://bgdd0pksxmi0b" path="res://scripts/player/states/state_walk.gd" id="4_jej6c"]
+[ext_resource type="Script" uid="uid://y18fdptngycp" path="res://scripts/player/states/state_dash.gd" id="5_f1ej7"]
+[ext_resource type="Script" uid="uid://ukqkfd7la4xl" path="res://scripts/metronome/music_notation/notes/player_note.gd" id="6_oprun"]
+[ext_resource type="Script" uid="uid://dwyixca3o82d1" path="res://scripts/metronome/music_notation/notes/qtr_note.gd" id="7_a8ls1"]
+[ext_resource type="Script" uid="uid://bxdg45ig62yb" path="res://scripts/player/states/state_attack.gd" id="8_d2wvv"]
+[ext_resource type="Texture2D" uid="uid://b66pulo52gho8" path="res://assets/player/TempPlayer.png" id="8_qfm1y"]
+[ext_resource type="Script" uid="uid://lgu40v7o00f2" path="res://scripts/components/health_component.gd" id="9_fulsm"]
+[ext_resource type="Script" uid="uid://vhlcx45q6vks" path="res://scripts/components/hurtbox_component.gd" id="10_4r5pv"]
+[ext_resource type="Script" uid="uid://bi8jygfs5mbh1" path="res://scripts/player/player_action_rating.gd" id="12_3v2ag"]
+[ext_resource type="Script" uid="uid://dbqf62uivtajk" path="res://scripts/player/player_attack.gd" id="13_jej6c"]
+[ext_resource type="Texture2D" uid="uid://dp8ty6ronaale" path="res://assets/sprites/bluenote1.png" id="14_f1ej7"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5refm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_qfm1y")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_erir7"]
+radius = 23.0868
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tv4ow"]
+radius = 26.4008
+
+[sub_resource type="Animation" id="Animation_f1ej7"]
+resource_name = "player_attack_animation"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerAttackSprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerAttackHitbox/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+
+[sub_resource type="Animation" id="Animation_oprun"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerAttackSprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerAttackHitbox/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_a8ls1"]
+_data = {
+&"RESET": SubResource("Animation_oprun"),
+&"player_attack_animation": SubResource("Animation_f1ej7")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oprun"]
+size = Vector2(26, 56)
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_y4r1p")
+metadata/_edit_group_ = true
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("2_d2wvv")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("3_3v2ag")
+
+[node name="Walk" type="Node" parent="StateMachine"]
+script = ExtResource("4_jej6c")
+move_speed = 275.0
+
+[node name="Dash" type="Node" parent="StateMachine"]
+script = ExtResource("5_f1ej7")
+
+[node name="PlayerNote" type="Node" parent="StateMachine/Dash"]
+script = ExtResource("6_oprun")
+metadata/_custom_type_script = "uid://ukqkfd7la4xl"
+
+[node name="QuarterNote" type="Node" parent="StateMachine/Dash/PlayerNote"]
+script = ExtResource("7_a8ls1")
+
+[node name="Attack" type="Node" parent="StateMachine"]
+script = ExtResource("8_d2wvv")
+metadata/_custom_type_script = "uid://bxdg45ig62yb"
+
+[node name="PlayerNote" type="Node" parent="StateMachine/Attack"]
+script = ExtResource("6_oprun")
+metadata/_custom_type_script = "uid://ukqkfd7la4xl"
+
+[node name="QuarterNote" type="Node" parent="StateMachine/Attack/PlayerNote"]
+script = ExtResource("7_a8ls1")
+
+[node name="PlayerSprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1.75, -1.25)
+scale = Vector2(0.1, 0.101)
+sprite_frames = SubResource("SpriteFrames_5refm")
+
+[node name="PlayerHitbox" type="CollisionShape2D" parent="."]
+position = Vector2(-3, -2)
+shape = SubResource("CircleShape2D_erir7")
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("9_fulsm")
+
+[node name="HurtboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("health_component")]
+script = ExtResource("10_4r5pv")
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
+shape = SubResource("CircleShape2D_tv4ow")
+
+[node name="PlayerActionRating" type="Node2D" parent="."]
+script = ExtResource("12_3v2ag")
+
+[node name="PlayerAttack" type="Node2D" parent="."]
+position = Vector2(45, 0)
+script = ExtResource("13_jej6c")
+
+[node name="PlayerAttackAnimation" type="AnimationPlayer" parent="PlayerAttack"]
+callback_mode_process = 0
+libraries = {
+&"": SubResource("AnimationLibrary_a8ls1")
+}
+
+[node name="PlayerAttackHitbox" type="Area2D" parent="PlayerAttack"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerAttack/PlayerAttackHitbox"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_oprun")
+
+[node name="PlayerAttackSprite" type="Sprite2D" parent="PlayerAttack"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("14_f1ej7")
+
+[connection signal="attack" from="StateMachine/Attack" to="PlayerActionRating" method="on_action"]
+[connection signal="attack" from="StateMachine/Attack" to="PlayerAttack" method="on_attack"]

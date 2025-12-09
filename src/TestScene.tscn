@@ -1,3 +1,141 @@
-[gd_scene format=3 uid="uid://dffx2hs1vdx2q"]
+[gd_scene load_steps=20 format=3 uid="uid://dffx2hs1vdx2q"]
+
+[ext_resource type="Texture2D" uid="uid://b1jeavjel5w7b" path="res://assets/backgrounds/ArenaDiscless.png" id="1_12c36"]
+[ext_resource type="Texture2D" uid="uid://bl57ci6vdnryf" path="res://assets/sprites/Maestro_Sprite.png" id="2_5uqhi"]
+[ext_resource type="Texture2D" uid="uid://bddsvjxr8o5r5" path="res://assets/sprites/Noise_Sprite.png" id="3_b3dy1"]
+[ext_resource type="Texture2D" uid="uid://dhcrvwywxbefj" path="res://assets/sprites/Vinyl.png" id="4_rxm5d"]
+[ext_resource type="Texture2D" uid="uid://c257w5e1mrxsc" path="res://assets/sprites/CD obstacle 1.png" id="5_7tcvf"]
+[ext_resource type="Texture2D" uid="uid://dgrlxpwl3wgii" path="res://assets/sprites/CD obstacle 2.png" id="6_exllb"]
+[ext_resource type="Texture2D" uid="uid://rhkrkh0bk6cj" path="res://assets/sprites/CD obstacle 3.png" id="7_lc3a7"]
+[ext_resource type="Texture2D" uid="uid://nlmykw8mxj26" path="res://assets/sprites/MusicKey.png" id="8_8bg8d"]
+[ext_resource type="Texture2D" uid="uid://dwiotootqu4wl" path="res://assets/sprites/bluexplosion2.png" id="9_f5py1"]
+[ext_resource type="Texture2D" uid="uid://bd4jcqq0lfenw" path="res://assets/sprites/redexplosion2.png" id="10_asirl"]
+[ext_resource type="Texture2D" uid="uid://bswvlsipfk4mj" path="res://assets/sprites/bluethrow1.png" id="11_iisml"]
+[ext_resource type="Texture2D" uid="uid://dp8ty6ronaale" path="res://assets/sprites/bluenote1.png" id="12_5imwo"]
+[ext_resource type="Texture2D" uid="uid://rmhw2opr4v4x" path="res://assets/sprites/sparkle.png" id="13_qeq8w"]
+[ext_resource type="Texture2D" uid="uid://dr4go4xn3ek5k" path="res://assets/sprites/speaker1.png" id="14_2hywx"]
+[ext_resource type="Texture2D" uid="uid://pydbiu1ftmug" path="res://assets/sprites/speaker2.png" id="15_ifppr"]
+[ext_resource type="Texture2D" uid="uid://8mp4qjjk3csi" path="res://assets/sprites/yellownote1.png" id="16_p7crv"]
+[ext_resource type="Texture2D" uid="uid://c432b05b2gogu" path="res://assets/sprites/redthrow1.png" id="17_4buxb"]
+[ext_resource type="Texture2D" uid="uid://h3pcbf2v8vue" path="res://assets/sprites/redthrow2.png" id="18_1bjkc"]
+[ext_resource type="Texture2D" uid="uid://dac6708e5mtys" path="res://assets/sprites/UIWindow.png" id="19_d7j7w"]
 
 [node name="TestScene" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(1440, 810)
+zoom = Vector2(0.667, 0.667)
+
+[node name="ArenaDiscless" type="Sprite2D" parent="."]
+texture = ExtResource("1_12c36")
+centered = false
+
+[node name="MaestroSprite" type="Sprite2D" parent="."]
+position = Vector2(1518, 225)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_5uqhi")
+
+[node name="NoiseSprote" type="Sprite2D" parent="."]
+position = Vector2(580, 757)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_b3dy1")
+
+[node name="NoiseSprote2" type="Sprite2D" parent="."]
+position = Vector2(313, 757)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_b3dy1")
+
+[node name="Vinyl" type="Sprite2D" parent="."]
+position = Vector2(1592, 614)
+texture = ExtResource("4_rxm5d")
+
+[node name="CdObstacle1" type="Sprite2D" parent="."]
+position = Vector2(1185, 840)
+texture = ExtResource("5_7tcvf")
+
+[node name="CdObstacle2" type="Sprite2D" parent="."]
+position = Vector2(1408, 645)
+texture = ExtResource("6_exllb")
+
+[node name="CdObstacle3" type="Sprite2D" parent="."]
+position = Vector2(1313, 747)
+texture = ExtResource("7_lc3a7")
+
+[node name="MusicKey" type="Sprite2D" parent="."]
+position = Vector2(635, 502)
+texture = ExtResource("8_8bg8d")
+
+[node name="Bluexplosion2" type="Sprite2D" parent="."]
+position = Vector2(301, 884)
+texture = ExtResource("9_f5py1")
+
+[node name="Bluexplosion3" type="Sprite2D" parent="."]
+position = Vector2(314, 1001)
+texture = ExtResource("9_f5py1")
+
+[node name="Redexplosion2" type="Sprite2D" parent="."]
+position = Vector2(586, 990)
+texture = ExtResource("10_asirl")
+
+[node name="Bluethrow1" type="Sprite2D" parent="."]
+position = Vector2(770, 819)
+texture = ExtResource("11_iisml")
+
+[node name="Bluenote1" type="Sprite2D" parent="."]
+position = Vector2(692, 497)
+texture = ExtResource("12_5imwo")
+
+[node name="Sparkle" type="Sprite2D" parent="."]
+position = Vector2(739, 510)
+texture = ExtResource("13_qeq8w")
+
+[node name="Speaker1" type="Sprite2D" parent="."]
+position = Vector2(1276, 163)
+texture = ExtResource("14_2hywx")
+
+[node name="Speaker2" type="Sprite2D" parent="."]
+position = Vector2(1068, 155)
+texture = ExtResource("15_ifppr")
+
+[node name="Yellownote1" type="Sprite2D" parent="."]
+position = Vector2(783, 503)
+texture = ExtResource("16_p7crv")
+
+[node name="Redthrow1" type="Sprite2D" parent="."]
+position = Vector2(1273, 497)
+texture = ExtResource("17_4buxb")
+
+[node name="Redthrow2" type="Sprite2D" parent="."]
+position = Vector2(1284.5, 362.5)
+texture = ExtResource("18_1bjkc")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+offset_left = 832.0
+offset_top = 1094.0
+offset_right = 2785.0
+offset_bottom = 1540.0
+texture = ExtResource("19_d7j7w")
+patch_margin_left = 73
+patch_margin_top = 79
+patch_margin_right = 79
+patch_margin_bottom = 67
+
+[node name="UiWindow" type="Sprite2D" parent="."]
+position = Vector2(2626, 1434)
+texture = ExtResource("19_d7j7w")
+
+[node name="MusicKey" type="Sprite2D" parent="UiWindow"]
+position = Vector2(-71, 7.5)
+texture = ExtResource("8_8bg8d")
+
+[node name="Bluenote1" type="Sprite2D" parent="UiWindow"]
+position = Vector2(-14, 2.5)
+texture = ExtResource("12_5imwo")
+
+[node name="Sparkle" type="Sprite2D" parent="UiWindow"]
+position = Vector2(33, 15.5)
+texture = ExtResource("13_qeq8w")
+
+[node name="Yellownote1" type="Sprite2D" parent="UiWindow"]
+position = Vector2(77, 8.5)
+texture = ExtResource("16_p7crv")

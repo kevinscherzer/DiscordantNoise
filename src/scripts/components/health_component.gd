@@ -11,6 +11,6 @@ func _ready() -> void:
 
 func damage(damage):
 	health -= damage
+	GameEvents.update_hp(health)
 	if health <= 0:
 		GameEvents.on_death()
-	print(health)

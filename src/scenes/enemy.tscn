@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://cteq4h4wh6fsy"]
+
+[ext_resource type="Texture2D" uid="uid://bl57ci6vdnryf" path="res://assets/sprites/Maestro_Sprite.png" id="1_md0e3"]
+[ext_resource type="Script" uid="uid://dtbnn8wuygon" path="res://scripts/components/hitbox_component.gd" id="2_4ra3w"]
+[ext_resource type="Script" uid="uid://cy3sxckh3bs47" path="res://scripts/enemy/enemy.gd" id="2_5uy6h"]
+[ext_resource type="Script" uid="uid://b32olopidmka4" path="res://scripts/enemy/health_bar.gd" id="3_4ra3w"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sugp2"]
+size = Vector2(620.0004, 1480.0007)
+
+[node name="Enemy" type="Sprite2D"]
+process_mode = 1
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_md0e3")
+script = ExtResource("2_5uy6h")
+
+[node name="HitBoxComponent" type="Area2D" parent="."]
+script = ExtResource("2_4ra3w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxComponent"]
+position = Vector2(19.999979, 0)
+scale = Vector2(0.9999991, 0.9999991)
+shape = SubResource("RectangleShape2D_sugp2")
+
+[node name="HealthBar" type="Node2D" parent="."]
+script = ExtResource("3_4ra3w")
+
+[node name="Fill" type="ColorRect" parent="HealthBar"]
+offset_left = -350.0
+offset_top = -960.0
+offset_right = 350.0
+offset_bottom = -900.0
+color = Color(1, 0, 0, 1)
